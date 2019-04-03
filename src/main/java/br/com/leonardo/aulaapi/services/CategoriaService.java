@@ -1,5 +1,6 @@
 package br.com.leonardo.aulaapi.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,10 @@ import br.com.leonardo.aulaapi.services.exceptions.ObjectNotFoundException;
 @Service
 public class CategoriaService {
 
+	public List<Categoria> listarTodas(){
+		return categoriaRepository.findAll();
+	}
+	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	public Categoria find(Integer id) {
