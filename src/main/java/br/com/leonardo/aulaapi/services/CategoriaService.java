@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.leonardo.aulaapi.domain.Categoria;
@@ -19,6 +21,12 @@ public class CategoriaService {
 	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
+	
+	public Page<Categoria> pesquisar(String nome, Pageable pageable){
+		return categoriaRepository.findByNomeContaining(nome, pageable);
+	}
+	
+	
 	public Categoria find(Integer id) {
 		Optional<Categoria> obj = categoriaRepository.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
